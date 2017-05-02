@@ -12,13 +12,13 @@ def load_colors
 
 	clean_colors = color_table.scan(PATTERN)
 
-#File.open(DUMP_FILE, 'w') do |f|
-	
-	with_markup = %{}
+	with_markup = "<table style='width: 100%; font-family:monospace'><caption>NCS COLORS</caption>"
+
 	clean_colors.each do |color|
-		with_markup << "<h3 style='color: #{color}'>#{color}<h3>"
+		with_markup << "<tr style='background: #{color}'><td>#{color}</td></tr>"
 	end
-	puts with_markup
+
+	with_markup << "</table>"
 
 	File.open(DUMP_FILE, 'w') do |f|
 		f.write(with_markup)
@@ -26,3 +26,4 @@ def load_colors
 end
 
 load_colors
+puts "Colors ready"
